@@ -1,0 +1,21 @@
+:root {
+    --black: #45474B;
+    --black-light: #31363F;
+    --blue: #76ABAE;
+    --white: #F5F7F8;
+    --green: #495E57;
+    --red: #C7253E;
+    --pink: #FF8A8A;
+    --coral: #ff8559;
+    --corallight: #ff8559e0;
+    --sand: #E9DFD8;
+
+
+    /* NEW */
+    --blue-p: #B5C0D0;
+    --green-p: #CCD3CA;
+    --white-p: #F5E8DD;
+    --pink-p: #EED3D9;
+
+    --btn-success: #5C8374;
+}

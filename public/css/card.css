@@ -1,0 +1,115 @@
+@import "color.css";
+
+.main {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .panel {
+        width: 800px;
+        height: 700px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border-radius: 15px;
+        box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+        border: none;
+
+        .panel-heading {
+            border: none;
+            background: none;
+            margin: -100px 0 40px 0;
+
+            .panel-title {
+
+                strong {
+                    color: var(--black);
+                    font-size: 24px;
+                }
+            }
+        }
+
+        .panel-body {
+
+            table {
+                width: 500px;
+
+                tr {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+
+                    td {
+                        padding: 10px;
+                        flex: 1;
+
+                        label {
+                            flex: 0 0 150px;
+                            margin-right: 10px;
+                        }
+
+                        .form-control {
+                            flex: 1;
+                            width: 100%;
+                        }
+
+                        img {
+                            margin-top: -60px;
+                            width: 350px;
+                            height: 220px;
+                            border-radius: 10px;
+                            transition: all .5s ease;
+                        }
+
+                        img:hover {
+                            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                        }
+                    }
+                }
+
+                .image-row {
+                    justify-content: center;
+                    td {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+
+        .panel-footer {
+            background: none;
+            width: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+
+            button {
+                margin: 10px;
+            }
+        }
+    }
+}
+
+.breadcrumb {
+    width: 800px;
+    text-align: center;
+    background-color: var(--blue-p);
+    color: var(--white);
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+    li {
+
+        a {
+            color: var(--white);
+        }
+    }
+
+    .active {
+        color: var(--white-p);
+    }
+}
