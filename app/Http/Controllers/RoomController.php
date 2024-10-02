@@ -35,7 +35,7 @@ class RoomController extends Controller
     }
 
     public function edit($id = null) {
-        $types = RoomType::pluck('type_name', 'id')->prepend('เลือกรายการ', '');
+        $types = RoomType::pluck('type_name', 'id')->prepend('Select item', '');
         $room = Room::find($id);
 
         if ($id) {
@@ -60,10 +60,10 @@ class RoomController extends Controller
         ];
     
         $messages = [
-            'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน',
-            'numeric' => 'กรุณากรอกข้อมูล :attribute ให้เป็นตัวเลข',
-            'availability_status.required' => 'กรุณาเลือกสถานะห้องพัก',
-            'availability_status.boolean' => 'สถานะห้องพักต้องเป็นค่า True หรือ False',
+            'required' => 'Please fill in information :attribute completely',
+            'numeric' => 'Please fill in information :attribute to be a number',
+            'availability_status.required' => 'Please select room status.',
+            // 'availability_status.boolean' => 'สถานะห้องพักต้องเป็นค่า True หรือ False',
         ];
     
         $id = $request->id;
@@ -105,7 +105,7 @@ class RoomController extends Controller
 
         return redirect('room')
         ->with('ok', true)
-        ->with('msg', 'บันทึกขอมูลเรียบร้อยแล้ว');
+        ->with('msg', 'The information has been recorded successfully.');
     }
 
     public function insert(Request $request) {
@@ -118,10 +118,10 @@ class RoomController extends Controller
         ];
         
         $messages = [
-            'required' => 'กรุณากรอกข้อมูล :attribute ให้ครบถ้วน',
-            'numeric' => 'กรุณากรอกข้อมูล :attribute ให้เป็นตัวเลข',
-            'availability_status.required' => 'กรุณาเลือกสถานะห้องพัก',
-            'availability_status.boolean' => 'สถานะห้องพักต้องเป็นค่า True หรือ False',
+           'required' => 'Please fill in information :attribute completely',
+            'numeric' => 'Please fill in information :attribute to be a number',
+            'availability_status.required' => 'Please select room status.',
+            // 'availability_status.boolean' => 'สถานะห้องพักต้องเป็นค่า True หรือ False',
         ];
         
         $temp = [
@@ -163,13 +163,13 @@ class RoomController extends Controller
     
         return redirect('room')
         ->with('ok', true)
-        ->with('msg', 'เพิ่มข้อมูลเรียบร้อยแล้ว');
+        ->with('msg', 'Information added successfully');
     }
 
     public function remove($id) {
         Room::find($id)->delete();
         return redirect('room')
         ->with('ok', true)
-        ->with('msg', 'ลบข้อมูลสําเร็จ');
+        ->with('msg', 'Data deleted successfully');
     }
 }

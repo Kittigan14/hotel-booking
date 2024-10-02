@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'จองห้องพัก')
+@section('title', 'Book a room')
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/home.css') }}">
@@ -13,53 +13,56 @@
 
 <div class="container">
 
-    <div class="row" ng-app="app" ng-controller="ctrl">
+    <div class="row" ng-app="app" ng-controller="ctrl" id="main">
+        {{-- Slide --}}
         <div class="col-md-3" id="slide">
-            <h1 style="margin: 0 0 45px 0;">ประเภทห้องพัก</h1>
+            <h1 style="margin: 0 0 45px 0;">Room type</h1>
             <div class="list-group">
                 <a href="#" class="list-group-item" ng-click="getRoomList(null)" ng-class="{'active': roomType == null}"
-                    id="room-type-all">ทั้งหมด</a>
+                    id="room-type-all">All</a>
 
                 <a href="#" class="list-group-item" ng-repeat="t in roomTypes" ng-click="getRoomList(t.id)"
                     ng-class="{'active': roomType == t.id}" style="color: #fff;">@{t.type_name}</a>
             </div>
 
             <div class="content-bar">
-                <h3>Address</h3>
+                <h3>Review</h3>
             </div>
 
         </div>
+        {{-- End Slide --}}
 
+        {{-- Cards --}}
         <div class="col-md-9">
             <div class="pull-center" style="margin: 0 0 36px 0;">
                 <input type="text" class="form-control" ng-model="query" ng-keyup="searchRoom($event)"
-                    placeholder="ค้นหา">
+                    placeholder="Search . . .">
                 <center>
-                    <h3 ng-if="!rooms.length" style="margin-top: 50px">ไม่พบข้อมูลห้องพัก</h3>
+                    <h3 ng-if="!rooms.length" style="margin-top: 50px">No room information found.</h3>
                 </center>
             </div>
 
             <div class="row">
-                <div class="col-md-3" ng-repeat="r in rooms">
+                <div class="col-md-5" ng-repeat="r in rooms">
+
                     <div class="panel panel-default">
                         <img ng-src="@{r.image}" class="img-responsive">
                         <div class="panel-body d-flex flex-column" style="height: 100%;">
                             <div class="content">
-                                <h4><a href="#">@{ r.description }</a></h4>
+                                <h4 style="text-align: center"><a href="#">@{ r.room_number }</a></h4>
                                 <div class="form-group">
                                     <div>
                                         <b>#</b>
                                         <span
                                             ng-class="{'room-available': r.availability_status == 1, 'room-booked': r.availability_status != 1}">
-                                            @{r.availability_status == 1 ? 'ห้องว่าง' : 'มีการจองแล้ว'}
+                                            @{r.availability_status == 1 ? 'Vacant room' : 'Already reserved'}
                                         </span>
                                     </div>
-                                    <div>ราคา <strong>@{r.price}</strong> บาท</div>
+                                    <div>price <strong>@{r.price}</strong> THB</div>
                                 </div>
                             </div>
+                            
                             <div class="btn-action">
-                                {{-- <a href="#" class="btn btn-success btn-block" ng-click="bookRoom(r)">
-                                    <i class="fa fa-shopping-cart"></i></a> --}}
                                     <a href="#" class="btn btn-success btn-block" ng-click="bookRoom(r)" 
                                     ng-disabled="r.availability_status == 0"
                                     ng-class="{'disabled': r.availability_status == 0, 'btn-danger': r.availability_status == 0}">
@@ -73,6 +76,7 @@
                 </div>
             </div>
         </div>
+        {{-- End Cards --}}
     </div>
 
 </div>

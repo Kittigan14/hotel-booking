@@ -1,10 +1,10 @@
 @extends("layouts.master")
-@section('title') Hotel | ข้อมูลห้องพัก @stop
+@section('title') Hotel | Room information @stop
 @section('content')
 
 <div class="container">
 
-    <h1>รายการสินค้า </h1>
+    <h1>List of rooms</h1>
 
     <div class="panel panel-default">
         {{-- <div class="panel-heading" id="panel-heading">
@@ -14,23 +14,23 @@
         <div class="panel-body">
             <form action="{{ URL::to('room/search') }}" method="POST" class="form-inline">
                 {{ csrf_field() }}
-                <input type="text" name="q" class="form-control" placeholder="ค้นหาห้องพัก . . .">
-                <button type="submit" class="btn btn-primary">ค้นหา</button>
+                <input type="text" name="q" class="form-control" placeholder="Search . . .">
+                <button type="submit" class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i></button>
 
-                <a href="{{ URL::to('room/edit') }}" class="btn btn-success pull-right">เพิ่มสินค้า</a>
+                <a href="{{ URL::to('room/edit') }}" class="btn btn-success pull-right">Add Room</a>
             </form>
         </div>
 
         <table class="table table-bordered table-hover">
             <thead>
                 <tr>
-                    <th>รูปห้องพัก</th>
-                    <th>รหัสห้องพัก</th>
-                    <th>ประเภทห้องพัก</th>
-                    <th>คำอธิบาย</th>
-                    <th>สถานะ</th>
-                    <th>ราคาต่อคืน</th>
-                    <th>การทํางาน</th>
+                    <th>Picture</th>
+                    <th>Room Code</th>
+                    <th>Room Type</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Price</th>
+                    <th>ACtion</th>
                 </tr>
             </thead>
             <tbody>
@@ -38,21 +38,21 @@
                 <tr>
                     <td> <img src="{{ $r->image }}"> </td>
                     <td>{{ $r->room_number }}</td>
-                    <td>{{ $r->roomType ? $r->roomType->type_name : 'ไม่มีประเภทห้อง' }}</td>
+                    <td>{{ $r->roomType ? $r->roomType->type_name : 'No room type' }}</td>
                     <td>{{ $r->description }}</td>
                     <td>
                         <p class="{{ $r->availability_status ? 'bg-green' : 'bg-red' }}">
-                            {{ $r->availability_status ? 'ว่าง' : 'จองแล้ว' }}
+                            {{ $r->availability_status ? 'Vacant room' : 'Already reserved' }}
                         </p>
                     </td>
                     <td class="bs-right">{{ $r->price }}</td>
                     <td>
                         <a href="{{ URL::to('room/edit/'.$r->id) }}" class="btn btn-info">
-                            <i class="fa fa-edit"></i> แก้ไข
+                            <i class="fa fa-edit"></i> Edit
                         </a>
             
                         <a href="#" class="btn btn-danger btn-delete" id-delete="{{ $r->id }}">
-                            <i class="fa fa-trash"></i> ลบ
+                            <i class="fa fa-trash"></i> Delete
                         </a>
                     </td>
                 </tr>
@@ -62,14 +62,14 @@
 
             <tfoot>
                 <tr>
-                    <th colspan="4">ห้องว่าง</th>
+                    <th colspan="4">Vacant room</th>
                     <th colspan="3">{{ $rooms->where('availability_status', 1)->count() }}</th>
                 </tr>
             </tfoot>
         </table>
 
         <div class="panel-footer">
-            <span>แสดงข้อมูลจํานวน {{ count($rooms) }} รายการ</span>
+            <span>Show quantity information {{ count($rooms) }} list</span>
         </div>
 
     </div>
@@ -78,7 +78,7 @@
 
 <script>
     $('.btn-delete').on('click', function() {
-        if(confirm('คุณต้องการลบข้อมูลห้องพักนี้หรือไม่?')) {
+        if(confirm('Do you want to delete this room information?')) {
             var url = "{{ URL::to('room/remove') }}" + '/' + $(this).attr('id-delete');
             window.location.href = url;
         }

@@ -23,10 +23,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ URL::to('home') }}">หน้าแรก</a></li>
-                <li><a href="{{ URL::to('room') }}">ข้อมูลห้องพัก</a></li>
-                <li><a href="{{ URL::to('booking') }}">ข้อมูลการจองห้องพัก</a></li>
-                <li><a href="#">รายงาน</a></li>
+                <li><a href="{{ URL::to('home') }}">Home</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="{{ URL::to('room') }}">Rooms</a></li>
+                <li><a href="{{ URL::to('booking') }}">Bookings</a></li>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">

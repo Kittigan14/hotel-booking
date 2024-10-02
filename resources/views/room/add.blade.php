@@ -1,5 +1,5 @@
 @extends("layouts.master")
-@section('title') BikeShop | เพิ่มข้อมูลสินค้า @stop
+@section('title') Hotel | Add room information @stop
 @section('content')
 
 <link rel="stylesheet" href="{{ asset('css/card.css') }}">
@@ -7,10 +7,10 @@
 <div class="container">
 
     <center>
-        <h1>เพิ่มสินค้า </h1>
+        <h1>Add a room </h1>
         <ul class="breadcrumb">
-            <li><a href="{{ URL::to('room') }}">หน้าแรก</a></li>
-            <li class="active">เพิ่มสินค้า </li>
+            <li><a href="{{ URL::to('room') }}">Home</a></li>
+            <li class="active">Add a room </li>
         </ul>
     </center>
 
@@ -36,7 +36,7 @@
 
                 <div class="panel-title" id="panel-title">
 
-                    <strong> ข้อมูลสินค้า </strong>
+                    <strong> Room information </strong>
 
                 </div>
 
@@ -46,34 +46,34 @@
                 <table>
 
                     <tr>
-                        <td>{{ Form::label('room_number', 'รหัสห้องพัก ') }}</td>
-                        <td>{{ Form::text('room_number', Request::old('room_number'), ['class' => 'form-control', 'placeholder' => 'กรอกรหัสห้องพัก']) }}</td>
+                        <td>{{ Form::label('room_number', 'Room Code ') }}</td>
+                        <td>{{ Form::text('room_number', Request::old('room_number'), ['class' => 'form-control', 'placeholder' => 'Enter the room code']) }}</td>
                     </tr>
 
                     <tr>
-                        <td>{{ Form::label('room_type_id', 'ประเภทห้องพัก ') }}</td>
+                        <td>{{ Form::label('room_type_id', 'Room Type ') }}</td>
                         <td>{{ Form::select('room_type_id', $types, Request::old('room_type_id'),['class' => 'form-control']) }}</td>
                     </tr>
 
                     <tr>
-                        <td>{{ Form::label('description', 'คำอธิบาย ') }}</td>
-                        <td>{{ Form::text('description', Request::old('description'), ['class' => 'form-control', 'placeholder' => 'กรอกคำอธิบาย']) }}</td>
+                        <td>{{ Form::label('description', 'Description ') }}</td>
+                        <td>{{ Form::text('description', Request::old('description'), ['class' => 'form-control', 'placeholder' => 'Fill in the description.']) }}</td>
                     </tr>
 
                     <tr>
-                        <td>{{ Form::label('availability_status', 'สถานะ') }}</td>
-                        <td>{{ Form::select('availability_status', [1 => 'ว่าง', 0 => 'จองแล้ว'], Request::old('availability_status', 1), ['class' => 'form-control']) }}
+                        <td>{{ Form::label('availability_status', 'Status') }}</td>
+                        <td>{{ Form::select('availability_status', [1 => 'Vacant room', 0 => 'Already reserved'], Request::old('availability_status', 1), ['class' => 'form-control']) }}
                         </td>
                     </tr>
 
                     <tr>
-                        <td>{{ Form::label('price', 'ราคาต่อห้อง') }}</td>
-                        <td>{{ Form::text('price', Request::old('price'), ['class' => 'form-control', 'placeholder' => 'กรอกราคา']) }}</td>
+                        <td>{{ Form::label('price', 'Price') }}</td>
+                        <td>{{ Form::text('price', Request::old('price'), ['class' => 'form-control', 'placeholder' => 'Fill in the price']) }}</td>
                     </tr>
 
                     <tr>
-                        <td>{{ Form::label('image', 'เลือกรูปภาพห้องพัก ') }}</td>
-                        <td>{{ Form::file('image') }}</td>
+                        <td>{{ Form::label('image', 'Picture ') }}</td>
+                        <td style="width: 100px;">{{ Form::file('image') }}</td>
                     </tr>
 
                 </table>
@@ -82,10 +82,10 @@
 
             <div class="panel-footer">
                 <button type="reset" class="btn btn-danger">
-                    <a style="color:#ffffff; text-decoration: none;" href="{{ URL::to('room') }}"> ยกเลิก </a>
+                    <a style="color:#ffffff; text-decoration: none;" href="{{ URL::to('room') }}"> Cancel </a>
                 </button>
                 <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-save"></i> บันทึก</button>
+                    <i class="fa fa-save"></i> Save</button>
             </div>
 
         </div>
