@@ -29,7 +29,7 @@ Route::get('like/delete/{id}', [LikeController::class, 'deletelike']);
 Route::get('like/update/{id}/{qty}', [LikeController::class, 'updateQty']);
 
 // Bookings
-Route::group(['middleware' => 'auth'], function() {
-    Route::get('bookings/create/{roomId}', [BookingController::class, 'create'])->name('bookings.create');
-    Route::post('bookings', [BookingController::class, 'store'])->name('bookings.store');
-});
+// Route::group(['middleware' => 'auth'], function() {
+//     Route::get('bookings/create/{roomId}', [BookingController::class, 'create'])->name('bookings.create');
+//     Route::post('bookings', [BookingController::class, 'store'])->name('bookings.store');
+// });
