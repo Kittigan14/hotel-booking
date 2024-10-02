@@ -17,28 +17,33 @@
 
 <body>
 
-    <nav class="navbar navbar-default navbar-static-top" style="background-color: #B5C0D0;">
-        <div class="navbar-header">
-            <a href="#" class="navbar-brand">Hotel</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="{{ URL::to('home') }}">Home</a></li>
-                <li><a href="#">About Us</a></li>
-                <li><a href="{{ URL::to('room') }}">Rooms</a></li>
-                <li><a href="{{ URL::to('booking') }}">Bookings</a></li>
-            </ul>
+    <nav class="navbar navbar-default navbar-static-top" id="navbar">
+        <div class="dot-line">
 
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a href="like/view"><i class="fa-solid fa-heart"></i> Like
-                        <span class="label label-danger">
-                            {!! count(Session::get('like_items', [])) !!}
-                        </span>
-                    </a>
-                </li>
-            </ul>
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">Hotel</a>
+            </div>
 
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ URL::to('home') }}">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="{{ URL::to('room') }}">Rooms</a></li>
+                    <li><a href="{{ URL::to('booking') }}">Bookings</a></li>
+                </ul>
+    
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="like/view"><i class="fa-solid fa-heart"></i> Like
+                            <span class="label label-danger">
+                                {!! count(Session::get('like_items', [])) !!}
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+    
+            </div>
+            
         </div>
     </nav> @yield("content")
 

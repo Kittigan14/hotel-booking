@@ -11,6 +11,51 @@
 
 </style>
 
+<div class="box-content">
+
+    <div class="des">
+        <div class="dot-line">
+            <p><i class="fa-solid fa-hotel"></i> Lorem ipsum dolor sit amet.</p>
+            <h1>Message</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, reprehenderit. Doloremque temporibus
+                nesciunt perspiciatis harum.</p>
+            <button>Action</button>
+        </div>
+    </div>
+
+    <div class="img-cons"></div>
+
+    <div class="info-box hotel">
+        <div class="dot-line">
+            <h2><i class="fa-solid fa-list"></i> Room Type </h2>
+        
+            <ul class="list">
+                <li>
+                    <strong>Single Room</strong>
+                    <p> - Single Room with a queen-sized bed offers a garden view and a large work desk, perfect for business travelers seeking comfort.</p>
+                </li>
+                <li>
+                    <strong>Double Room</strong>
+                    <p> - Modern Double Room with a king-sized bed, private bathtub, and a private balcony is perfect for couples seeking a romantic getaway.</p>
+                </li>
+                <li>
+                    <strong>Suite</strong>
+                    <p> - Luxurious Suite with a spacious living area, kitchenette, and a private balcony with city views offers an unparalleled accommodation experience.</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+
+    <div class="info-box entertainment">
+        <div class="dot-line">
+            <h2>Amenities</h2>
+            <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+    </div>
+
+</div>
+
 <div class="container">
 
     <div class="row" ng-app="app" ng-controller="ctrl" id="main">
@@ -61,13 +106,13 @@
                                     <div>price <strong>@{r.price}</strong> THB</div>
                                 </div>
                             </div>
-                            
+
                             <div class="btn-action">
-                                    <a href="#" class="btn btn-success btn-block" ng-click="bookRoom(r)" 
+                                <a href="#" class="btn btn-success btn-block" ng-click="bookRoom(r)"
                                     ng-disabled="r.availability_status == 0"
                                     ng-class="{'disabled': r.availability_status == 0, 'btn-danger': r.availability_status == 0}">
                                     <i class="fa fa-shopping-cart"></i>
-                                 </a>
+                                </a>
                                 <a href="#" class="btn btn-success btn-block" id="like" ng-click="addToLike(r)">
                                     <i class="fa-solid fa-heart"></i></a>
                             </div>
