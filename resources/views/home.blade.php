@@ -11,55 +11,57 @@
 
 </style>
 
-<div class="box-content">
-
-    <div class="des">
-        <div class="dot-line">
-            <p><i class="fa-solid fa-hotel"></i> Lorem ipsum dolor sit amet.</p>
-            <h1>Message</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, reprehenderit. Doloremque temporibus
-                nesciunt perspiciatis harum.</p>
-            <button>Action</button>
-        </div>
-    </div>
-
-    <div class="img-cons"></div>
-
-    <div class="info-box hotel">
-        <div class="dot-line">
-            <h2><i class="fa-solid fa-list"></i> Room Type </h2>
-        
-            <ul class="list">
-                <li>
-                    <strong>Single Room</strong>
-                    <p> - Single Room with a queen-sized bed offers a garden view and a large work desk, perfect for business travelers seeking comfort.</p>
-                </li>
-                <li>
-                    <strong>Double Room</strong>
-                    <p> - Modern Double Room with a king-sized bed, private bathtub, and a private balcony is perfect for couples seeking a romantic getaway.</p>
-                </li>
-                <li>
-                    <strong>Suite</strong>
-                    <p> - Luxurious Suite with a spacious living area, kitchenette, and a private balcony with city views offers an unparalleled accommodation experience.</p>
-                </li>
-            </ul>
-        </div>
-    </div>
-    
-
-    <div class="info-box entertainment">
-        <div class="dot-line">
-            <h2>Amenities</h2>
-            <p>Lorem ipsum dolor sit amet.</p>
-        </div>
-    </div>
-
-</div>
 
 <div class="container">
+    <div class="box-content">
 
-    <div class="row" ng-app="app" ng-controller="ctrl" id="main">
-        {{-- Slide --}}
+        <div class="des">
+            <div class="dot-line">
+                <p><i class="fa-solid fa-hotel"></i> Lorem ipsum dolor sit amet.</p>
+                <h1>Message</h1>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, reprehenderit. Doloremque temporibus
+                    nesciunt perspiciatis harum.</p>
+                <button>Action</button>
+            </div>
+        </div>
+
+        <div class="img-cons"></div>
+
+        <div class="info-box hotel">
+            <div class="dot-line">
+                <h2><i class="fa-solid fa-list"></i> Room Type </h2>
+
+                <ul class="list">
+                    <li>
+                        <strong>Single Room</strong>
+                        <p> - Single Room with a queen-sized bed offers a garden view and a large work desk, perfect for
+                            business travelers seeking comfort.</p>
+                    </li>
+                    <li>
+                        <strong>Double Room</strong>
+                        <p> - Modern Double Room with a king-sized bed, private bathtub, and a private balcony is
+                            perfect for couples seeking a romantic getaway.</p>
+                    </li>
+                    <li>
+                        <strong>Suite</strong>
+                        <p> - Luxurious Suite with a spacious living area, kitchenette, and a private balcony with city
+                            views offers an unparalleled accommodation experience.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="info-box entertainment">
+            <div class="dot-line">
+                <h2>Amenities</h2>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+
+    </div>
+
+    {{-- <div class="row" ng-app="app" ng-controller="ctrl" id="main">
         <div class="col-md-3" id="slide">
             <h1 style="margin: 0 0 45px 0;">Room type</h1>
             <div class="list-group">
@@ -75,9 +77,7 @@
             </div>
 
         </div>
-        {{-- End Slide --}}
 
-        {{-- Cards --}}
         <div class="col-md-9">
             <div class="pull-center" style="margin: 0 0 36px 0;">
                 <input type="text" class="form-control" ng-model="query" ng-keyup="searchRoom($event)"
@@ -121,8 +121,65 @@
                 </div>
             </div>
         </div>
-        {{-- End Cards --}}
+    </div> --}}
+    <div class="main-container" ng-app="app" ng-controller="ctrl">
+        <!-- Slide -->
+        <div class="sidebar">
+            <h1>Room type</h1>
+            <div class="list-group">
+                <a href="#" class="list-group-item" ng-click="getRoomList(null)" ng-class="{'active': roomType == null}"
+                    id="room-type-all">All</a>
+                <a href="#" class="list-group-item" ng-repeat="t in roomTypes" ng-click="getRoomList(t.id)"
+                    ng-class="{'active': roomType == t.id}">@{t.type_name}</a>
+            </div>
+
+            <div class="content-bar">
+                <h3>Review</h3>
+            </div>
+        </div>
+
+        <!-- Cards -->
+        <div class="cards-container">
+            <div class="search-bar">
+                <input type="text" class="form-control" ng-model="query" ng-keyup="searchRoom($event)"
+                    placeholder="Search . . ."> 
+                <center>
+                    <h3 ng-if="!rooms.length" style="margin-top: 50px">No room information found.</h3>
+                </center>
+            </div>
+
+            <div class="cards">
+                <div class="card" ng-repeat="r in rooms">
+                    <img ng-src="@{r.image}" class="card-img">
+                    <div class="card-body">
+                        <div class="dot-line">
+                            <h4 class="card-title">@{ r.room_number }</h4>
+                            <p class="description">@{ r.description }</p>
+                            <p class="card-status">
+                                Status:
+                                <span ng-class="{'room-available': r.availability_status == 1, 'room-booked': r.availability_status != 1}">
+                                    @{r.availability_status == 1 ? 'Vacant room' : 'Already reserved'}
+                                </span>
+                            </p>
+                            <p class="card-price">Price: <strong>@{r.price}</strong> THB</p>
+                            <div class="card-actions">
+                                <a href="#" class="btn book-btn" ng-click="bookRoom(r)"
+                                    ng-disabled="r.availability_status == 0"
+                                    ng-class="{'btn-disabled': r.availability_status == 0}">
+                                    <i class="fa fa-shopping-cart"></i> Book
+                                </a>
+                                <a href="#" class="btn like-btn" id="like" ng-click="addToLike(r)">
+                                    <i class="fa fa-heart"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
+
 
 </div>
 
